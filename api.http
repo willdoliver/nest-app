@@ -1,6 +1,20 @@
 ###
-GET http://localhost:3001/admin/products
+# @name admin_jwt_login
+POST http://localhost:3001/auth/login
+Content-Type: application/json
 
+{
+    "email": "admin@user.com",
+    "password": "secret"
+}
+
+###
+
+@jwt = {{ admin_jwt_login.response.body.access_token }}
+
+###
+GET http://localhost:3001/admin/products
+Authorization: Bearer {{jwt}}
 ###
 # @name createProduct
 POST http://localhost:3001/admin/products
