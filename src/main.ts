@@ -16,6 +16,10 @@ async function bootstrap() {
     // field validation
     new ValidationPipe({
       errorHttpStatusCode: 422,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
 
